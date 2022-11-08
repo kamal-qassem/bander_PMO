@@ -1,3 +1,0 @@
-# Bander_project_mangment
-Bander_project_mangment
-Readme
