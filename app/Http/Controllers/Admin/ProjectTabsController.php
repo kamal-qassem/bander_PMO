@@ -30,6 +30,8 @@ class ProjectTabsController extends Controller
         
         if (request()->ajax()) {
             $query = ProjectTab::query();
+            $query->where('company_id', Auth::user()->company_id);
+
             $template = 'actionsTemplate';
             if(request('show_deleted') == 1) {
                 
@@ -99,6 +101,13 @@ class ProjectTabsController extends Controller
         if ( isDemo() ) {
          return prepareBlockUserMessage( 'info', 'crud_disabled' );
         }
+        $additional = array(           
+      
+            'company_id'=> Auth::user()->company_id,
+
+        );
+        // dd(Auth::user());
+        $request->request->add( $additional ); 
         $project_tab = ProjectTab::create($request->all());
 
         return redirect()->route('admin.project_tabs.index');

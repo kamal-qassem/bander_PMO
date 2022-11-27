@@ -52,6 +52,7 @@ class ClientProjectsController extends Controller
         
         if (request()->ajax()) {
             $query = ClientProject::query();
+            $query->where('company_id', Auth::user()->company_id);
             if( isEmployee() ){
                 $query->whereHas("assigned_to",
                    function ($query) {
@@ -287,11 +288,15 @@ class ClientProjectsController extends Controller
             'start_date' => ! empty( $request->start_date ) ? Carbon::createFromFormat($date_set, $request->start_date)->format('Y-m-d') : NULL,
             'due_date' => ! empty( $request->due_date ) ? Carbon::createFromFormat($date_set, $request->due_date)->format('Y-m-d') : NULL,
             'currency_id' => $currency_id,
+            'company_id'=> Auth::user()->company_id,
+
         );
+        // dd(Auth::user());
         $request->request->add( $additional ); 
          if ( isDemo() ) {
          return prepareBlockUserMessage( 'info', 'crud_disabled' );
         }
+        // dd($request->all());
         $client_project = ClientProject::create($request->all());
         $client_project->assigned_to()->sync(array_filter((array)$request->input('assigned_to')));
         $client_project->project_tabs()->sync(array_filter((array)$request->input('project_tabs')));
