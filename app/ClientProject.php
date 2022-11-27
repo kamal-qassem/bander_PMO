@@ -31,7 +31,7 @@ class ClientProject extends Model implements HasMedia
     use SoftDeletes;
     use HasMediaTrait;
 
-    protected $fillable = ['title', 'priority', 'budget', 'phase', 'start_date', 'due_date', 'description', 'demo_url', 'client_id', 'billing_type_id', 'status_id', 'date_finished', 'progress', 'progress_from_tasks', 'project_rate_per_hour', 'estimated_hours', 'hourly_rate', 'currency_id'];
+    protected $fillable = ['title', 'priority', 'budget', 'phase', 'start_date', 'due_date', 'description', 'demo_url', 'client_id', 'billing_type_id', 'status_id', 'date_finished', 'progress', 'progress_from_tasks', 'project_rate_per_hour', 'estimated_hours', 'hourly_rate', 'currency_id','company_id'];
     protected $hidden = [];
     public static $searchable = [ 'title', 'description', 'start_date', 'due_date'];
     

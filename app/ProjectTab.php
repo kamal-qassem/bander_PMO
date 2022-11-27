@@ -15,7 +15,7 @@ class ProjectTab extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['title', 'description'];
+    protected $fillable = ['title', 'description','company_id'];
     protected $hidden = [];
     public static $searchable = [
     ];
