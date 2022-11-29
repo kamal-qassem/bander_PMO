@@ -12,6 +12,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property text $excerpt
  * @property string $featured_image
 */
+
+
+
+
+
+
+
+
 class Article extends Model
 {
     protected $fillable = ['title', 'page_text', 'excerpt', 'featured_image'];
