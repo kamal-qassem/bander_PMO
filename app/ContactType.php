@@ -15,7 +15,7 @@ class ContactType extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['title', 'name', 'color', 'type', 'description'];
+    protected $fillable = ['title', 'name', 'color', 'type', 'description','company_id'];
     protected $hidden = [];
     public static $searchable = [
     ];
@@ -28,6 +28,10 @@ class ContactType extends Model
         ContactType::observe(new \App\Observers\UserActionsObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+     
+            static::addGlobalScope(new \App\Scopes\CompanyScope);
+    
+        
     }
     
 }

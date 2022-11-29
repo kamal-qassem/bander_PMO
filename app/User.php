@@ -26,7 +26,7 @@ class User extends Authenticatable
 
     protected $table = 'contacts';
     
-    protected $fillable = ['name', 'email', 'password', 'remember_token', 'department_id', 'status', 'theme', 'portal_language', 'confirmation_code', 'ticketit_admin', 'ticketit_agent', 'hourly_rate', 'color_theme', 'color_skin'];
+    protected $fillable = ['name','company_id', 'email', 'password', 'remember_token', 'department_id', 'status', 'theme', 'portal_language', 'confirmation_code', 'ticketit_admin', 'ticketit_agent', 'hourly_rate', 'color_theme', 'color_skin'];
     protected $hidden = ['password', 'remember_token'];
 
     
@@ -47,6 +47,11 @@ class User extends Authenticatable
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
 
         static::addGlobalScope(new \App\Scopes\DefaultUserScope);
+         
+          
+        //  static::addGlobalScope(new \App\Scopes\CompanyScope);
+            
+         
     }
     
     

@@ -15,7 +15,7 @@ class Country extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['shortcode', 'title', 'dialcode'];
+    protected $fillable = ['shortcode', 'title', 'dialcode','company_id'];
     protected $hidden = [];
     public static $searchable = [
     ];
@@ -27,6 +27,10 @@ class Country extends Model
         Country::observe(new \App\Observers\UserActionsObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+    
+           
+                static::addGlobalScope(new \App\Scopes\CompanyScope);
+        
     }
     
 }

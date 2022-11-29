@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 class ContactEmailCampaigns extends Model
 {
 
-    protected $fillable = ['list_id', 'list_name', 'subject', 'from_name', 'from_email', 'is_schedule', 'schedule_date', 'content', 'campaign_id'];
+    protected $fillable = ['list_id', 'list_name', 'subject', 'from_name', 'from_email', 'is_schedule', 'schedule_date', 'content', 'campaign_id','company_id'];
     protected $hidden = [];
     public static $searchable = [
     ];
@@ -27,6 +27,10 @@ class ContactEmailCampaigns extends Model
         ContactDocument::observe(new \App\Observers\UserActionsObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+      
+            static::addGlobalScope(new \App\Scopes\CompanyScope);
+    
+      
     }
 
     /**

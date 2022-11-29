@@ -21,7 +21,7 @@ class Transfer extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['date', 'amount', 'ref_no', 'description', 'from_id', 'to_id', 'payment_method_id'];
+    protected $fillable = ['date','company_id', 'amount', 'ref_no', 'description', 'from_id', 'to_id', 'payment_method_id'];
     protected $hidden = [];
     public static $searchable = [
     ];
@@ -35,6 +35,10 @@ class Transfer extends Model
        
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+         
+        static::addGlobalScope(new \App\Scopes\CompanyScope);
+            
+         
     }
 
     /**

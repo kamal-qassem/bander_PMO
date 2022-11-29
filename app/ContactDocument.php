@@ -18,7 +18,7 @@ class ContactDocument extends Model implements HasMedia
 {
     use SoftDeletes, HasMediaTrait;
 
-    protected $fillable = ['name', 'description', 'contact_id'];
+    protected $fillable = ['name', 'description', 'contact_id','company_id'];
     protected $hidden = [];
     public static $searchable = [
     ];
@@ -30,6 +30,10 @@ class ContactDocument extends Model implements HasMedia
         ContactDocument::observe(new \App\Observers\UserActionsObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+        
+            static::addGlobalScope(new \App\Scopes\CompanyScope);
+    
+        
     }
 
     /**

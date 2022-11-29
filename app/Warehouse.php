@@ -16,7 +16,7 @@ class Warehouse extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['name', 'address', 'description'];
+    protected $fillable = ['name', 'address', 'description','company_id'];
     protected $hidden = [];
     public static $searchable = [ 'name', 'address', 'description'
     ];
@@ -28,6 +28,10 @@ class Warehouse extends Model
         Warehouse::observe(new \App\Observers\UserActionsObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+         
+        static::addGlobalScope(new \App\Scopes\CompanyScope);
+            
+       
     }
     
 }

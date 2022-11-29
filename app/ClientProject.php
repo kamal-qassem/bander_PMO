@@ -42,7 +42,8 @@ class ClientProject extends Model implements HasMedia
         ClientProject::observe(new \App\Observers\UserActionsObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
-
+        static::addGlobalScope(new \App\Scopes\CompanyScope);
+        
         if ( ! defined('CRON_JOB') ) {
             if ( isClient() ) {
                 static::addGlobalScope(new ClientProjectsScope);

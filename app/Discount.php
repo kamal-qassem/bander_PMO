@@ -17,7 +17,7 @@ class Discount extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['name', 'discount', 'discount_type', 'description'];
+    protected $fillable = ['name','company_id', 'discount', 'discount_type', 'description'];
     protected $hidden = [];
     public static $searchable = [
     ];
@@ -29,6 +29,11 @@ class Discount extends Model
         Discount::observe(new \App\Observers\UserActionsObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+        
+          
+        static::addGlobalScope(new \App\Scopes\CompanyScope);
+            
+        
     }
 
     public static $enum_discount_type = ["percent" => "Percent", "value" => "Value"];

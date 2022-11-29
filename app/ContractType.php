@@ -16,7 +16,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 */
 class ContractType extends Model
 {
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['name', 'description','company_id'];
     protected $hidden = [];
     public static $searchable = [
     ];
@@ -28,6 +28,11 @@ class ContractType extends Model
       ContractType::observe(new \App\Observers\UserActionsObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+
+       
+            static::addGlobalScope(new \App\Scopes\CompanyScope);
+    
+       
     }
     
 }

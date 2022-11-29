@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 */
 class FaqCategory extends Model
 {
-    protected $fillable = ['title'];
+    protected $fillable = ['title','company_id'];
     protected $hidden = [];
     
     
@@ -22,6 +22,11 @@ class FaqCategory extends Model
         FaqCategory::observe(new \App\Observers\UserActionsObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+       
+          
+        static::addGlobalScope(new \App\Scopes\CompanyScope);
+            
+        
     }
     
 }

@@ -17,7 +17,7 @@ class Department extends Model
 {
     use SoftDeletes, FilterByUser;
 
-    protected $fillable = ['name', 'description', 'created_by_id'];
+    protected $fillable = ['name', 'description', 'created_by_id','company_id'];
     protected $hidden = [];
     public static $searchable = [ 'name'    ];
     
@@ -28,6 +28,11 @@ class Department extends Model
         Department::observe(new \App\Observers\UserActionsObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+        
+          
+                    static::addGlobalScope(new \App\Scopes\CompanyScope);
+            
+        
     }
 
     /**

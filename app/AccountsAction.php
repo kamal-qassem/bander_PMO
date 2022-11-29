@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 */
 class AccountsAction extends Model
 {
-    protected $fillable = ['action', 'action_model', 'action_id', 'user_id', 'record', 'amount'];
+    protected $fillable = ['action', 'action_model', 'action_id', 'user_id', 'record', 'amount','company_id'];
     protected $hidden = [];
     public static $searchable = [
     ];
@@ -41,6 +41,15 @@ class AccountsAction extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+     
+         static::addGlobalScope(new \App\Scopes\CompanyScope);
+
     }
     
 }

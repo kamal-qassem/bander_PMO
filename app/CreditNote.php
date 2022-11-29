@@ -40,7 +40,7 @@ class CreditNote extends Model implements HasMedia
     use SoftDeletes;
     use HasMediaTrait;
 
-    protected $fillable = ['title', 'address', 'invoice_prefix', 'show_quantity_as', 'invoice_no', 'status', 'reference', 'invoice_date',  'invoice_notes', 'amount', 'customer_id', 'currency_id', 'tax_id', 'discount_id', 'products', 'slug', 'signature', 'delivery_address', 'show_delivery_address', 'admin_notes', 'terms_conditions', 'project_id','created_by_id', 'invoice_number_format', 'invoice_number_separator', 'invoice_number_length','credit_status','paymentstatus'];
+    protected $fillable = ['title','company_id', 'address', 'invoice_prefix', 'show_quantity_as', 'invoice_no', 'status', 'reference', 'invoice_date',  'invoice_notes', 'amount', 'customer_id', 'currency_id', 'tax_id', 'discount_id', 'products', 'slug', 'signature', 'delivery_address', 'show_delivery_address', 'admin_notes', 'terms_conditions', 'project_id','created_by_id', 'invoice_number_format', 'invoice_number_separator', 'invoice_number_length','credit_status','paymentstatus'];
     protected $hidden = [];
     public static $searchable = [ 'title', 'invoice_no', 'reference'
     ];
@@ -50,7 +50,10 @@ class CreditNote extends Model implements HasMedia
         parent::boot();
 
         CreditNote::observe(new \App\Observers\UserActionsObserver);
-
+ 
+        static::addGlobalScope(new \App\Scopes\CompanyScope);
+        
+ 
          
 
 

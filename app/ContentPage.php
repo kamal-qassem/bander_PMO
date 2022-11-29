@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 */
 class ContentPage extends Model
 {
-    protected $fillable = ['title', 'page_text', 'excerpt', 'featured_image'];
+    protected $fillable = ['title', 'page_text', 'excerpt', 'featured_image','company_id'];
     protected $hidden = [];
     public static $searchable = [ 'title', 'page_text'  ];
     
@@ -26,6 +26,9 @@ class ContentPage extends Model
         ContentPage::observe(new \App\Observers\UserActionsObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+      
+            static::addGlobalScope(new \App\Scopes\CompanyScope);
+     
     }
     
     public function category_id()

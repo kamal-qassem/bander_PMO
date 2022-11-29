@@ -11,17 +11,22 @@ use Illuminate\Database\Eloquent\Model;
 */
 class AssetsLocation extends Model
 {
-    protected $fillable = ['title'];
+    protected $fillable = ['title','company_id'];
     protected $hidden = [];
     public static $searchable = [ 'title' ];
     
     public static function boot()
     {
+   
+    
+        
         parent::boot();
 
         AssetsLocation::observe(new \App\Observers\UserActionsObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+        static::addGlobalScope(new \App\Scopes\CompanyScope);
+
     }
 
      public function status()

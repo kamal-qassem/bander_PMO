@@ -20,7 +20,7 @@ class Account extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['name', 'description', 'initial_balance', 'account_number', 'contact_person', 'phone', 'url'];
+    protected $fillable = ['name', 'description', 'initial_balance', 'account_number', 'contact_person', 'phone', 'url','company_id'];
     protected $hidden = [];
     public static $searchable = [
         'name',
@@ -45,6 +45,8 @@ class Account extends Model
         Account::observe(new \App\Observers\AccountCrudActionObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+        static::addGlobalScope(new \App\Scopes\CompanyScope);
+
     }
 
     /**

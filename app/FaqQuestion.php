@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 */
 class FaqQuestion extends Model
 {
-    protected $fillable = ['question_text', 'answer_text', 'category_id'];
+    protected $fillable = ['question_text','company_id', 'answer_text', 'category_id'];
     protected $hidden = [];
     public static $searchable = [ 'question_text', 'answer_text'
     ];
@@ -25,6 +25,9 @@ class FaqQuestion extends Model
         FaqQuestion::observe(new \App\Observers\UserActionsObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+       
+        static::addGlobalScope(new \App\Scopes\CompanyScope);
+      
     }
 
     /**
