@@ -20,6 +20,6 @@ class CompanyScope implements Scope
     {
       
 
-       $builder->where('company_id',getCompanyId());
+      
     }
 }
