@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 */
 class AssetsHistory extends Model
 {
-    protected $fillable = ['asset_id', 'status_id', 'location_id', 'assigned_user_id'];
+    protected $fillable = ['asset_id', 'status_id', 'location_id', 'assigned_user_id','company_id'];
     protected $hidden = [];
     public static $searchable = [
     ];
@@ -74,6 +74,14 @@ class AssetsHistory extends Model
     public function assigned_user()
     {
         return $this->belongsTo(User::class, 'assigned_user_id');
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+ 
+        static::addGlobalScope(new \App\Scopes\CompanyScope);
+
     }
     
 }

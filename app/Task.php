@@ -18,7 +18,7 @@ use Carbon\Carbon;
 */
 class Task extends Model
 {
-    protected $fillable = ['name', 'description', 'attachment', 'due_date', 'status_id', 'user_id', 'start_date'];
+    protected $fillable = ['name','company_id', 'description', 'attachment', 'due_date', 'status_id', 'user_id', 'start_date'];
     protected $hidden = [];
     public static $searchable = [ 'name', 'description'
     ];
@@ -30,6 +30,9 @@ class Task extends Model
         Task::observe(new \App\Observers\UserActionsObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+  
+        static::addGlobalScope(new \App\Scopes\CompanyScope);
+      
     }
 
     /**

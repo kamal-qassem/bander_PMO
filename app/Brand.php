@@ -16,7 +16,7 @@ class Brand extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['title', 'icon', 'status'];
+    protected $fillable = ['title', 'icon', 'status','company_id'];
     protected $hidden = [];
     public static $searchable = [ 'title' ];
     
@@ -27,7 +27,12 @@ class Brand extends Model
         Brand::observe(new \App\Observers\UserActionsObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
-    }
+      
+            
+            static::addGlobalScope(new \App\Scopes\CompanyScope);
+    
+        }
+    
 
     public static $enum_status = ["Active" => "Active", "Inactive" => "Inactive"];
     

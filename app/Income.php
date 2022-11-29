@@ -23,7 +23,7 @@ class Income extends Model implements HasMedia
 {
     use HasMediaTrait;
 
-    protected $fillable = ['entry_date', 'amount', 'original_amount', 'original_currency_id', 'description', 'ref_no', 'account_id', 'income_category_id', 'payer_id','payer_name', 'pay_method_id', 'slug'];
+    protected $fillable = ['entry_date','company_id', 'amount', 'original_amount', 'original_currency_id', 'description', 'ref_no', 'account_id', 'income_category_id', 'payer_id','payer_name', 'pay_method_id', 'slug'];
     protected $hidden = [];
     public static $searchable = [ 'description', 'ref_no'
     ];
@@ -37,6 +37,12 @@ class Income extends Model implements HasMedia
         Income::observe(new \App\Observers\AccountCrudActionObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+
+         
+          
+        static::addGlobalScope(new \App\Scopes\CompanyScope);
+            
+        
     }
 
     /**

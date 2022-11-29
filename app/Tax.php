@@ -17,7 +17,7 @@ class Tax extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['name', 'rate', 'rate_type', 'description'];
+    protected $fillable = ['name','company_id', 'rate', 'rate_type', 'description'];
     protected $hidden = [];
     public static $searchable = [
     ];
@@ -29,6 +29,11 @@ class Tax extends Model
         Tax::observe(new \App\Observers\UserActionsObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+    
+          
+        static::addGlobalScope(new \App\Scopes\CompanyScope);
+            
+        
     }
 
     public static $enum_rate_type = ["value" => "Value", "percent" => "Percent"];

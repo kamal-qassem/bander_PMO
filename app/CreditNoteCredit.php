@@ -18,7 +18,7 @@ class CreditNoteCredit extends Model
 {
 
     protected $table = 'credit_note_credits';
-    protected $fillable = ['invoice_id', 'credit_note_id', 'user_id', 'amount'];
+    protected $fillable = ['invoice_id', 'credit_note_id', 'user_id', 'amount','company_id'];
     protected $hidden = [];
     public static $searchable = [
     ];
@@ -28,6 +28,10 @@ class CreditNoteCredit extends Model
         parent::boot();
 
         CreditNotePayment::observe(new \App\Observers\UserActionsObserver);
+      
+        static::addGlobalScope(new \App\Scopes\CompanyScope);
+            
+        
     }
 
     /**

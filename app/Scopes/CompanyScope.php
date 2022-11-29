@@ -5,7 +5,7 @@ namespace App\Scopes;
 use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
-//use Auth;
+ use Auth;
 
 class CompanyScope implements Scope
 {
@@ -18,6 +18,8 @@ class CompanyScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $builder->where('company_id', Auth::user()->company_id);
+      
+
+       $builder->where('company_id',getCompanyId());
     }
 }

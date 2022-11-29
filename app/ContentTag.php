@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 */
 class ContentTag extends Model
 {
-    protected $fillable = ['title', 'slug'];
+    protected $fillable = ['title', 'slug','company_id'];
     protected $hidden = [];
     
     
@@ -23,6 +23,9 @@ class ContentTag extends Model
         ContentTag::observe(new \App\Observers\UserActionsObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+         
+            static::addGlobalScope(new \App\Scopes\CompanyScope);
+     
     }
     
 }

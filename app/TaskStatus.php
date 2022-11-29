@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 */
 class TaskStatus extends Model
 {
-    protected $fillable = ['name', 'color'];
+    protected $fillable = ['name', 'color','company_id'];
     protected $hidden = [];
     
     
@@ -22,6 +22,12 @@ class TaskStatus extends Model
         TaskStatus::observe(new \App\Observers\UserActionsObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+
+     
+          
+        static::addGlobalScope(new \App\Scopes\CompanyScope);
+            
+       
     }
     
 }

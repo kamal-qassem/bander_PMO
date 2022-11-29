@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 */
 class TaskTag extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['name','company_id'];
     protected $hidden = [];
     
     
@@ -22,6 +22,11 @@ class TaskTag extends Model
         TaskTag::observe(new \App\Observers\UserActionsObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+        
+          
+        static::addGlobalScope(new \App\Scopes\CompanyScope);
+            
+       
     }
     
 }

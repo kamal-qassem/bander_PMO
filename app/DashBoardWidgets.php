@@ -21,7 +21,7 @@ use Carbon\Carbon;
 class DashBoardWidgets extends Model
 {
     
-    protected $fillable = ['title', 'status', 'order', 'type', 'slug', 'columns'];
+    protected $fillable = ['title', 'company_id','status', 'order', 'type', 'slug', 'columns'];
     protected $hidden = [];
     public static $searchable = [];
     protected $table = 'dashboard_widgets_role';
@@ -29,6 +29,10 @@ class DashBoardWidgets extends Model
     public static function boot()
     {
         parent::boot();
+     
+                    static::addGlobalScope(new \App\Scopes\CompanyScope);
+            
+        
 
         
     }

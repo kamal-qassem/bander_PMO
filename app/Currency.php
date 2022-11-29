@@ -19,7 +19,7 @@ class Currency extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['name', 'symbol', 'code', 'rate', 'status', 'is_default'];
+    protected $fillable = ['name', 'company_id','symbol', 'code', 'rate', 'status', 'is_default'];
     protected $hidden = [];
     public static $searchable = [
     ];
@@ -35,6 +35,10 @@ class Currency extends Model
           });
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+    
+        static::addGlobalScope(new \App\Scopes\CompanyScope);
+            
+        
     }
 
     public static $enum_status = ["Active" => "Active", "Inactive" => "Inactive"];

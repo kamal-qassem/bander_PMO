@@ -19,7 +19,7 @@ class CreditNotePayment extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['date', 'amount', 'transaction_id', 'credit_note_id', 'account_id', 'paymentmethod', 'description', 'payment_status', 'transaction_data', 'slug'];
+    protected $fillable = ['date', 'amount','company_id', 'transaction_id', 'credit_note_id', 'account_id', 'paymentmethod', 'description', 'payment_status', 'transaction_data', 'slug'];
     protected $hidden = [];
     public static $searchable = [
     ];
@@ -29,6 +29,11 @@ class CreditNotePayment extends Model
         parent::boot();
 
         CreditNotePayment::observe(new \App\Observers\UserActionsObserver);
+         
+          
+                    static::addGlobalScope(new \App\Scopes\CompanyScope);
+            
+      
     }
 
     /**

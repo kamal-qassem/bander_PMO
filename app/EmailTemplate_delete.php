@@ -16,7 +16,7 @@ class EmailTemplate extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['name', 'key', 'subject', 'body'];
+    protected $fillable = ['name', 'key', 'subject', 'body','company_id'];
     protected $hidden = [];
     public static $searchable = [
         'name',
@@ -29,6 +29,10 @@ class EmailTemplate extends Model
         EmailTemplate::observe(new \App\Observers\UserActionsObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+       
+          
+                    static::addGlobalScope(new \App\Scopes\CompanyScope);
+    
     }
     
 }

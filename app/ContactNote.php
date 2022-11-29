@@ -18,7 +18,7 @@ class ContactNote extends Model implements HasMedia
 {
     use SoftDeletes, HasMediaTrait;
 
-    protected $fillable = ['title', 'notes', 'contact_id'];
+    protected $fillable = ['title', 'notes', 'contact_id','company_id'];
     protected $hidden = [];
     public static $searchable = [ 'title', 'notes'  ];
     
@@ -29,6 +29,10 @@ class ContactNote extends Model implements HasMedia
         ContactNote::observe(new \App\Observers\UserActionsObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+ 
+            static::addGlobalScope(new \App\Scopes\CompanyScope);
+    
+        
     }
 
     /**

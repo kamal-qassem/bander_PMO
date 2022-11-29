@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 */
 class ContentCategory extends Model
 {
-    protected $fillable = ['title', 'slug'];
+    protected $fillable = ['title', 'slug','company_id'];
     protected $hidden = [];
     
     
@@ -23,6 +23,11 @@ class ContentCategory extends Model
         ContentCategory::observe(new \App\Observers\UserActionsObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+
+         
+            static::addGlobalScope(new \App\Scopes\CompanyScope);
+    
+        
     }
     
 }

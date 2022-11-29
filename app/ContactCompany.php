@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 */
 class ContactCompany extends Model
 {
-    protected $fillable = ['name', 'email', 'address', 'website', 'country_id'];
+    protected $fillable = ['name', 'email', 'address', 'website', 'country_id','company_id'];
     protected $hidden = [];
     public static $searchable = [ 'name', 'email', 'address' ];
     
@@ -25,6 +25,10 @@ class ContactCompany extends Model
         ContactCompany::observe(new \App\Observers\UserActionsObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+        
+            static::addGlobalScope(new \App\Scopes\CompanyScope);
+    
+      
     }
 
     public function country()

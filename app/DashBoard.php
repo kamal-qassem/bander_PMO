@@ -22,7 +22,7 @@ use DB;
 class DashBoard extends Model
 {
     
-    protected $fillable = ['title', 'status', 'type', 'slug', 'role_id', 'columns'];
+    protected $fillable = ['title','company_id', 'status', 'type', 'slug', 'role_id', 'columns'];
     protected $hidden = [];
     public static $searchable = [];
     protected $table = 'dashboard_widgets';
@@ -30,6 +30,9 @@ class DashBoard extends Model
     public static function boot()
     {
         parent::boot();
+           
+     static::addGlobalScope(new \App\Scopes\CompanyScope);
+      
         
     }
 

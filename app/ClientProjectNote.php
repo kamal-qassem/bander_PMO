@@ -10,7 +10,7 @@ class ClientProjectNote extends Model
 
 
 
-    protected $fillable = ['project_id', 'description', 'user_id'];
+    protected $fillable = ['project_id', 'description', 'user_id','company_id'];
     protected $hidden = [];
     public static $searchable = [ ];
     
@@ -21,6 +21,10 @@ class ClientProjectNote extends Model
         ClientProject::observe(new \App\Observers\UserActionsObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+       
+            static::addGlobalScope(new \App\Scopes\CompanyScope);
+    
+   
     }
     
     public function project()

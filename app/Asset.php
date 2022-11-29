@@ -22,7 +22,7 @@ class Asset extends Model implements HasMedia
 {
     use HasMediaTrait;
 
-    protected $fillable = ['serial_number', 'title', 'photo1', 'notes', 'category_id', 'status_id', 'location_id', 'assigned_user_id'];
+    protected $fillable = ['serial_number', 'title', 'photo1', 'notes', 'category_id', 'status_id', 'location_id', 'assigned_user_id','company_id'];
     protected $hidden = [];
     public static $searchable = [ 'title', 'serial_number' ];
     
@@ -35,6 +35,8 @@ class Asset extends Model implements HasMedia
         Asset::observe(new \App\Observers\AssetsHistoryObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+        static::addGlobalScope(new \App\Scopes\CompanyScope);
+
     }
 
     /**

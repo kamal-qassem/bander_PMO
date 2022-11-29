@@ -18,7 +18,7 @@ class CreditNoteHistory extends Model
     use SoftDeletes;
 
     protected $table = 'credit_notes_history';
-    protected $fillable = ['ip_address', 'country', 'city', 'browser', 'credit_note_id', 'comments', 'operation_type'];
+    protected $fillable = ['ip_address','company_id', 'country', 'city', 'browser', 'credit_note_id', 'comments', 'operation_type'];
     protected $hidden = [];
     public static $searchable = [
     ];
@@ -30,6 +30,11 @@ class CreditNoteHistory extends Model
         CreditNoteHistory::observe(new \App\Observers\UserActionsObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+
+       
+                    static::addGlobalScope(new \App\Scopes\CompanyScope);
+            
+         
     }
 
     /**

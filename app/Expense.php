@@ -23,7 +23,7 @@ class Expense extends Model implements HasMedia
 {
     use HasMediaTrait;
 
-    protected $fillable = ['entry_date', 'amount', 'description', 'ref_no', 'account_id', 'expense_category_id', 
+    protected $fillable = ['entry_date', 'company_id','amount', 'description', 'ref_no', 'account_id', 'expense_category_id', 
     'payee_id', 'payment_method_id', 'slug','name', 'is_recurring', 'recurring_period_id','recurring_value', 'is_recurring_from', 'project_id', 'create_invoice_billable', 'send_invoice_to_customer', 'billable','billed', 'invoice_id', 'tax_id', 'tax_value', 'tax_type', 'currency_id','recurring_type','cycles','total_cycles'
     ];
     protected $hidden = [];
@@ -42,6 +42,9 @@ class Expense extends Model implements HasMedia
         }
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+       
+        static::addGlobalScope(new \App\Scopes\CompanyScope);
+       
     }
 
     /**

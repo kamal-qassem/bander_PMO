@@ -18,7 +18,7 @@ class TimeEntry extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['start_date', 'end_date', 'description', 'project_id', 'task_id', 'completed_by_id', 'user_id', 'hourly_rate'];
+    protected $fillable = ['start_date','company_id', 'end_date', 'description', 'project_id', 'task_id', 'completed_by_id', 'user_id', 'hourly_rate'];
     protected $hidden = [];
     public static $searchable = [
     ];
@@ -30,6 +30,11 @@ class TimeEntry extends Model
         TimeEntry::observe(new \App\Observers\UserActionsObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+         
+          
+        static::addGlobalScope(new \App\Scopes\CompanyScope);
+            
+         
     }
 
     /**

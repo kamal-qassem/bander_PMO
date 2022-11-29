@@ -985,6 +985,10 @@ function getContactId() {
   return Auth::id();
 }
 
+function getCompanyId() {
+   return Auth::user()->company_id;
+}
+
 function hasTransactions() {
   $invocie_payments = \Modules\InvoicePayments\Entities\InvoicePayment::count();
 }

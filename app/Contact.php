@@ -51,6 +51,10 @@ class Contact extends Model  implements HasMedia
         Contact::observe(new \App\Observers\UserActionsObserver);
 
         static::addGlobalScope(new \App\Scopes\DefaultOrderScope);
+      
+            //  static::addGlobalScope(new \App\Scopes\CompanyScope);
+    
+    
     }
 
 
